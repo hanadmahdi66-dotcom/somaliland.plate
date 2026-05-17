@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Republic of Somaliland — Secure Vehicle Plate Registry">
+  <meta name="theme-color" content="#0d2818">
+  <title>Somaliland Plate Tracker — GOV L2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash" class="splash" aria-hidden="false">
+    <div class="splash-inner">
+      <div class="splash-emblem" aria-hidden="true">
+        <div class="flag-emblem">
+          <div class="flag-stripe green"></div>
+          <div class="flag-stripe white"></div>
+          <div class="flag-stripe red"></div>
+          <span class="flag-star">★</span>
+        </div>
+      </div>
+      <div class="gov-badge">
+        <span class="badge-icon">🛡️</span>
+        <span class="badge-text">OFFICIAL REGISTRY</span>
+      </div>
+      <h1 class="splash-title">Republic of Somaliland</h1>
+      <p class="splash-subtitle">Vehicle Plate Tracking System</p>
+      <div class="splash-loader">
+        <div class="loader-bar"></div>
+      </div>
+      <p class="splash-secure">🔒 SECURE • GOVERNMENT L2</p>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app hidden" aria-hidden="true">
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="header-emblem" aria-hidden="true">★</div>
+        <div>
+          <h1 class="header-title">Plate Tracker</h1>
+          <p class="header-sub">Republic of Somaliland</p>
+        </div>
+      </div>
+      <div class="security-badge" title="Data encrypted at rest">
+        <span>🔒 ENCRYPTED • GOV L2</span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- Home View -->
+      <section id="view-home" class="view active">
+        <button type="button" id="btn-add-plate" class="btn-primary btn-large">
+          <span class="btn-icon">+</span>
+          ADD NEW PLATE
+        </button>
+
+        <div class="search-section">
+          <label for="search-input" class="sr-only">Search by owner or plate</label>
+          <div class="search-wrap">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input
+              type="search"
+              id="search-input"
+              class="search-input"
+              placeholder="Search by owner name or plate number..."
+              autocomplete="off"
+            >
+          </div>
+        </div>
+
+        <div class="list-header">
+          <h2>Registered Vehicles</h2>
+          <span id="vehicle-count" class="count-badge">0</span>
+        </div>
+        <div id="vehicle-list" class="vehicle-list" role="list"></div>
+        <p id="empty-state" class="empty-state">No vehicles registered. Tap "ADD NEW PLATE" to begin.</p>
+      </section>
+
+      <!-- Add Plate Form View -->
+      <section id="view-form" class="view">
+        <div class="form-header">
+          <button type="button" id="btn-back" class="btn-back" aria-label="Back to home">← Back</button>
+          <h2>Register New Plate</h2>
+        </div>
+
+        <form id="plate-form" class="plate-form" novalidate>
+          <div class="form-group">
+            <label for="owner-name">Owner's Full Name <span class="label-so">(qofka iska leh gaadhiga)</span></label>
+            <input type="text" id="owner-name" name="ownerName" required placeholder="Enter full legal name" autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label for="plate-number">Plate Number <span class="label-so">(plate numberkiisa)</span></label>
+            <input type="text" id="plate-number" name="plateNumber" required placeholder="e.g. SL-1234-AB" autocomplete="off" style="text-transform: uppercase;">
+          </div>
+
+          <div class="form-group">
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" name="mobile" required placeholder="+252 63 XXX XXXX" autocomplete="tel">
+          </div>
+
+          <div class="form-group photos-group">
+            <label>Vehicle Photos <span class="label-so">(sawiro — ugu yaraan 3)</span></label>
+            <p class="photo-hint">Minimum 3 photos required. Upload from device.</p>
+            <div class="photo-actions">
+              <label for="photo-input" class="btn-secondary btn-upload">
+                📷 Add Photos
+              </label>
+              <input type="file" id="photo-input" accept="image/*" multiple hidden>
+              <span id="photo-count" class="photo-count">0 / 3 minimum</span>
+            </div>
+            <div id="photo-preview" class="photo-preview" role="list" aria-label="Photo previews"></div>
+          </div>
+
+          <button type="submit" id="btn-save" class="btn-primary btn-save" disabled>
+            ADD LIST
+          </button>
+        </form>
+      </section>
+
+      <!-- Detail Modal -->
+      <dialog id="detail-modal" class="detail-modal">
+        <div class="modal-content">
+          <button type="button" class="modal-close" id="modal-close" aria-label="Close">×</button>
+          <div id="modal-body"></div>
+        </div>
+      </dialog>
+    </main>
+
+    <footer class="app-footer">
+      <p>© Republic of Somaliland — Authorized Use Only</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="app.js?v=2"></script>
+</body>
+</html>
